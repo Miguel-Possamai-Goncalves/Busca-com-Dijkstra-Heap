@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+#texto h2 {
+    text-align: center;
+    padding: 20px;
+}
+
+#texto p {
+    text-align: center;
+    font-size: 20px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+}
+
+.img {
+    max-width: 90%;
+    max-height: 80vh;
+}

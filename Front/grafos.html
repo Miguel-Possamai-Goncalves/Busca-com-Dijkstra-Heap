@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="grafos.css">
+    <title>Grafos</title>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div id="texto">
+        <h2>Conexões entre Capitais</h2>
+    </div>
+
+    <div id="conexões">
+        <div class="bloco-cidade">
+            <h3>Aracajú-SE</h3>
+            <p><strong>Pedágio:</strong> R$ 20</p>
+            <p><strong>Vizinhos:</strong> Maceió-AL (294 km) e Salvador-BA (356 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Belém-PA</h3>
+            <p><strong>Pedágio:</strong> R$ 50</p>
+            <p><strong>Vizinhos:</strong> São Luís-MA (806 km), Palmas-TO (1283 km), Cuiabá-MT (2941 km), Manaus-AM (5298 km) e Boa Vista-RR (6083 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Belo Horizonte-MG</h3>
+            <p><strong>Pedágio:</strong> R$ 70</p>
+            <p><strong>Vizinhos:</strong> São Paulo-SP (586 km), Rio de Janeiro-RJ (434 km), Brasília-DF (716 km), Vitória-ES (524 km), Salvador-BA (1372 km), Goiânia-GO (906 km) e Campo Grande-MS (1453 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Boa Vista-RR</h3>
+            <p><strong>Pedágio:</strong> R$ 20</p>
+            <p><strong>Vizinhos:</strong> Manaus-AM (785 km) e Belém-PA (6083 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Brasília-DF</h3>
+            <p><strong>Pedágio:</strong> R$ 20</p>
+            <p><strong>Vizinhos:</strong> Goiânia-GO (209 km) e Belo Horizonte-MG (716 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Campo Grande-MS</h3>
+            <p><strong>Pedágio:</strong> R$ 50</p>
+            <p><strong>Vizinhos:</strong> Cuiabá-MT (694 km), Goiânia-GO (935 km), Belo Horizonte-MG (1453 km), São Paulo-SP (1014 km) e Curitiba-PR (991 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Cuiabá-MT</h3>
+            <p><strong>Pedágio:</strong> R$ 60</p>
+            <p><strong>Vizinhos:</strong> Porto Velho-RO (1456 km), Manaus-AM (2357 km), Belém-PA (2941 km), Campo Grande-MS (694 km), Goiânia-GO (934 km) e Palmas-TO (1784 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Curitiba-PR</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> São Paulo-SP (408 km), Florianópolis-SC (300 km) e Campo Grande-MS (991 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Florianópolis-SC</h3>
+            <p><strong>Pedágio:</strong> R$ 20</p>
+            <p><strong>Vizinhos:</strong> Curitiba-PR (300 km) e Porto Alegre-RS (476 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Fortaleza-CE</h3>
+            <p><strong>Pedágio:</strong> R$ 40</p>
+            <p><strong>Vizinhos:</strong> Teresina-PI (634 km), Natal-RN (537 km), João Pessoa-PB (688 km) e Recife-PE (800 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Goiânia-GO</h3>
+            <p><strong>Pedágio:</strong> R$ 60</p>
+            <p><strong>Vizinhos:</strong> Cuiabá-MT (934 km), Brasília-DF (209 km), Campo Grande-MS (935 km), Belo Horizonte-MG (906 km), Salvador-BA (1643 km) e Palmas-TO (874 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>João Pessoa-PB</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> Recife-PE (120 km), Natal-RN (185 km) e Fortaleza-CE (688 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Macapá-AP</h3>
+            <p><strong>Pedágio:</strong> R$ 0</p>
+            <p><strong>Vizinhos:</strong> Nenhum</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Maceió-AL</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> Recife-PE (285 km), Aracajú-SE (294 km) e Salvador-BA (632 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Manaus-AM</h3>
+            <p><strong>Pedágio:</strong> R$ 50</p>
+            <p><strong>Vizinhos:</strong> Boa Vista-RR (785 km), Porto Velho-RO (901 km), Rio Branco-AC (1445 km), Belém-PA (5298 km) e Cuiabá-MT (2357 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Natal-RN</h3>
+            <p><strong>Pedágio:</strong> R$ 20</p>
+            <p><strong>Vizinhos:</strong> Fortaleza-CE (537 km) e João Pessoa-PB (185 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Palmas-TO</h3>
+            <p><strong>Pedágio:</strong> R$ 60</p>
+            <p><strong>Vizinhos:</strong> Belém-PA (1283 km), Cuiabá-MT (1784 km), Goiânia-GO (874 km), Salvador-BA (1454 km), Teresina-PI (1401 km) e São Luís-MA (1386 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Porto Alegre-RS</h3>
+            <p><strong>Pedágio:</strong> R$ 10</p>
+            <p><strong>Vizinhos:</strong> Florianópolis-SC (476 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Porto Velho-RO</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> Manaus-AM (901 km), Rio Branco-AC (544 km) e Cuiabá-MT (1456 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Recife-PE</h3>
+            <p><strong>Pedágio:</strong> R$ 50</p>
+            <p><strong>Vizinhos:</strong> João Pessoa-PB (120 km), Teresina-PI (1137 km), Fortaleza-CE (800 km), Maceió-AL (285 km) e Salvador-BA (839 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Rio Branco-AC</h3>
+            <p><strong>Pedágio:</strong> R$ 20</p>
+            <p><strong>Vizinhos:</strong> Porto Velho-RO (544 km) e Manaus-AM (1445 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Rio de Janeiro-RJ</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> São Paulo-SP (429 km), Belo Horizonte-MG (434 km) e Vitória-ES (521 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Salvador-BA</h3>
+            <p><strong>Pedágio:</strong> R$ 80</p>
+            <p><strong>Vizinhos:</strong> Aracajú-SE (356 km), Recife-PE (839 km), Maceió-AL (632 km), Teresina-PI (1163 km), Palmas-TO (1454 km), Goiânia-GO (1643 km), Belo Horizonte-MG (1372 km) e Vitória-ES (1202 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>São Luís-MA</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> Teresina-PI (446 km), Belém-PA (806 km) e Palmas-TO (1386 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>São Paulo-SP</h3>
+            <p><strong>Pedágio:</strong> R$ 40</p>
+            <p><strong>Vizinhos:</strong> Rio de Janeiro-RJ (429 km), Campo Grande-MS (1014 km), Belo Horizonte-MG (586 km) e Curitiba-PR (408 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Teresina-PI</h3>
+            <p><strong>Pedágio:</strong> R$ 50</p>
+            <p><strong>Vizinhos:</strong> São Luís-MA (446 km), Fortaleza-CE (634 km), Recife-PE (1137 km), Salvador-BA (1163 km), Palmas-TO (1401 km)</p>
+        </div>
+
+        <div class="bloco-cidade">
+            <h3>Vitória-ES</h3>
+            <p><strong>Pedágio:</strong> R$ 30</p>
+            <p><strong>Vizinhos:</strong> Rio de Janeiro-RJ (521 km), Belo Horizonte-MG (524 km), Salvador-BA (1202 km)</p>
+        </div>
+    </div>
+
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

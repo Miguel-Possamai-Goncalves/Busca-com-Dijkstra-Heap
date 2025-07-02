@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="buscas.css">
+  <title>Buscas de Rota</title>
+  
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('nav.html')
+        .then(resp => resp.text())
+        .then(html => document.getElementById('nav-placeholder').innerHTML = html)
+        .catch(err => console.error('Erro ao carregar nav:', err));
+    });
+  </script>
+  
+  <script defer src="/Back/script.js"></script>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <form id="form" onsubmit="return false;">
+    <div class="form-group">
+      <label for="origem">CAPITAL DE ORIGEM:</label>
+      <select id="origem">
+        <option value="">Selecione uma capital</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="destino">CAPITAL DE DESTINO:</label>
+      <select id="destino">
+        <option value="">Selecione uma capital</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="combustivel">PREÇO DO COMBUSTÍVEL (R$/L):</label>
+      <input type="number" id="combustivel" min="0" step="0.01" placeholder="Ex: 5.80" required>
+    </div>
+
+    <div class="form-group">
+      <label for="autonomia">AUTONOMIA DO VEÍCULO (km/L):</label>
+      <input type="number" id="autonomia" min="1" step="0.1" placeholder="Ex: 10" required>
+    </div>
+
+    <div class="form-group buttons">
+      <button id="buscar" type="button">BUSCAR CAMINHO</button>
+    </div>
+
+    <div class="form-group">
+      <label>CAMINHO DE MENOR CUSTO:</label>
+      <p id="caminho">---</p>
+    </div>
+
+    <div class="form-group">
+      <label for="custo">CUSTO TOTAL (R$):</label>
+      <output id="custo">0.00</output>
+    </div>
+
+    <button id="limpar" type="button">LIMPAR RESULTADO</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="home.css">
+    <title>Caminho Mais Barato</title>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div id="texto">
+        <h2>Bem-vindo ao sistema de rotas entre capitais brasileiras!</h2>
+        <p>Encontre o caminho mais barato entre duas capitais, levando em conta distância, preço do combustível, autonomia e pedágios.</p>
+    </div>
+    <main>
+        <img src="../img/rotas.png" alt="Rotas entre capitais" class="img">
+    </main>
+
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

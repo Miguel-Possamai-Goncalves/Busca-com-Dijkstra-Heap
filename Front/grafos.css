@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+#conexões {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+    padding-bottom: 15px; 
+}
+
+#texto h2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.bloco-cidade h3 {
+    font-size: 22px;
+}
+
+.bloco-cidade p {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.bloco-cidade {
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+    width: 1200px;
+}

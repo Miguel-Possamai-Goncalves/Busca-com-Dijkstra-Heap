@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="capitais.css">
+    <title>Capitais</title>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div id="texto">
+        <h2>Capitais Brasileiras</h2>
+    </div>
+
+    <div id="capitais">
+        <div class="capital"><p>Aracajú-SE</p></div>
+        <div class="capital"><p>Belém-PA</p></div>
+        <div class="capital"><p>Belo Horizonte-MG</p></div>
+        <div class="capital"><p>Boa Vista-RR</p></div>
+        <div class="capital"><p>Brasília-DF</p></div>
+        <div class="capital"><p>Campo Grande-MS</p></div>
+        <div class="capital"><p>Cuiabá-MT</p></div>
+        <div class="capital"><p>Curitiba-PR</p></div>
+        <div class="capital"><p>Florianópolis-SC</p></div>
+        <div class="capital"><p>Fortaleza-CE</p></div>
+        <div class="capital"><p>Goiânia-GO</p></div>
+        <div class="capital"><p>João Pessoa-PB</p></div>
+        <div class="capital"><p>Macapá-AP</p></div>
+        <div class="capital"><p>Maceió-AL</p></div>
+        <div class="capital"><p>Manaus-AM</p></div>
+        <div class="capital"><p>Natal-RN</p></div>
+        <div class="capital"><p>Palmas-TO</p></div>
+        <div class="capital"><p>Porto Alegre-RS</p></div>
+        <div class="capital"><p>Porto Velho-RO</p></div>
+        <div class="capital"><p>Recife-PE</p></div>
+        <div class="capital"><p>Rio Branco-AC</p></div>
+        <div class="capital"><p>Rio de Janeiro-RJ</p></div>
+        <div class="capital"><p>Salvador-BA</p></div>
+        <div class="capital"><p>São Luís-MA</p></div>
+        <div class="capital"><p>São Paulo-SP</p></div>
+        <div class="capital"><p>Teresina-PI</p></div>
+        <div class="capital"><p>Vitória-ES</p></div>
+    </div>
+
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

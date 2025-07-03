@@ -1,151 +1,156 @@
-class Graph {
+class Grafo {
   constructor() {
-    this.adjList = {};
-    this.tolls = {};
+    this.listaAdjacencia = {};
+    this.pedagios = {};
   }
 
-  addVertex(city, toll) {
-    if (!this.adjList[city]) {
-      this.adjList[city] = [];
-      this.tolls[city] = toll;
+  adicionarVertice(cidade, pedagio) {
+    if (!this.listaAdjacencia[cidade]) {
+      this.listaAdjacencia[cidade] = [];
+      this.pedagios[cidade] = pedagio;
     }
   }
 
-  addEdge(u, v, distance) {
-    this.adjList[u].push({ node: v, distance });
-    this.adjList[v].push({ node: u, distance });
+  adicionarAresta(u, v, distancia) {
+    this.listaAdjacencia[u].push({ destino: v, distancia });
+    this.listaAdjacencia[v].push({ destino: u, distancia });
   }
 }
 
-class MinHeap {
+class FilaMinima {
   constructor() {
-    this.heap = [];
+    this.fila = [];
   }
 
-  swap(i, j) {
-    [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+  trocar(i, j) {
+    [this.fila[i], this.fila[j]] = [this.fila[j], this.fila[i]];
   }
 
-  push(item) {
-    this.heap.push(item);
-    this.bubbleUp(this.heap.length - 1);
+  inserir(item) {
+    this.fila.push(item);
+    this.subir(this.fila.length - 1);
   }
 
-  bubbleUp(idx) {
-    const parent = Math.floor((idx - 1) / 2);
-    if (parent >= 0 && this.heap[parent].cost > this.heap[idx].cost) {
-      this.swap(parent, idx);
-      this.bubbleUp(parent);
+  subir(indice) {
+    const pai = Math.floor((indice - 1) / 2);
+    if (pai >= 0 && this.fila[pai].custo > this.fila[indice].custo) {
+      this.trocar(pai, indice);
+      this.subir(pai);
     }
   }
 
-  pop() {
-    if (!this.heap.length) return null;
-    this.swap(0, this.heap.length - 1);
-    const top = this.heap.pop();
-    this.bubbleDown(0);
-    return top;
+  remover() {
+    if (!this.fila.length) return null;
+    this.trocar(0, this.fila.length - 1);
+    const topo = this.fila.pop();
+    this.descer(0);
+    return topo;
   }
 
-  bubbleDown(idx) {
-    const left = 2 * idx + 1;
-    const right = 2 * idx + 2;
-    let smallest = idx;
+  descer(indice) {
+    const esquerda = 2 * indice + 1;
+    const direita = 2 * indice + 2;
+    let menor = indice;
 
-    if (left < this.heap.length && this.heap[left].cost < this.heap[smallest].cost) {
-      smallest = left;
+    if (esquerda < this.fila.length && this.fila[esquerda].custo < this.fila[menor].custo) {
+      menor = esquerda;
     }
-    if (right < this.heap.length && this.heap[right].cost < this.heap[smallest].cost) {
-      smallest = right;
+    if (direita < this.fila.length && this.fila[direita].custo < this.fila[menor].custo) {
+      menor = direita;
     }
-    if (smallest !== idx) {
-      this.swap(idx, smallest);
-      this.bubbleDown(smallest);
+    if (menor !== indice) {
+      this.trocar(indice, menor);
+      this.descer(menor);
     }
   }
 
-  isEmpty() {
-    return this.heap.length === 0;
+  estaVazia() {
+    return this.fila.length === 0;
   }
 }
 
-function loadGraph() {
+function carregarGrafo() {
   fetch('/json/capitais.json')
     .then(res => res.json())
-    .then(data => {
-      window.graph = new Graph();
+    .then(dados => {
+      window.grafo = new Grafo();
       
-      data.forEach(entry => {
-        const [city, info] = Object.entries(entry)[0];
-        graph.addVertex(city, info.toll);
+      dados.forEach(entrada => {
+        const [cidade, info] = Object.entries(entrada)[0];
+        grafo.adicionarVertice(cidade, info.toll);
       });
       
-      data.forEach(entry => {
-        const [city, info] = Object.entries(entry)[0];
-        Object.entries(info.neighbors).forEach(([nbr, dist]) => {
-          graph.addEdge(city, nbr, dist);
+      dados.forEach(entrada => {
+        const [cidade, info] = Object.entries(entrada)[0];
+        Object.entries(info.neighbors).forEach(([vizinho, distancia]) => {
+          grafo.adicionarAresta(cidade, vizinho, distancia);
         });
       });
-      populateSelects();
+
+      preencherSelects();
     })
     .catch(err => console.error('Erro ao carregar capitais.json:', err));
 }
 
-function populateSelects() {
+function preencherSelects() {
   const origem = document.getElementById('origem');
   const destino = document.getElementById('destino');
-  Object.keys(graph.adjList).sort().forEach(city => {
-    origem.add(new Option(city, city));
-    destino.add(new Option(city, city));
+  Object.keys(grafo.listaAdjacencia).sort().forEach(cidade => {
+    origem.add(new Option(cidade, cidade));
+    destino.add(new Option(cidade, cidade));
   });
 }
 
-function dijkstra(start, end, fuelPrice, autonomy) {
-  const costs = {}, prev = {};
-  const heap = new MinHeap();
+function dijkstra(origem, destino, precoCombustivel, autonomia) {
+  const custos = {}, anteriores = {};
+  const fila = new FilaMinima();
 
-  Object.keys(graph.adjList).forEach(c => costs[c] = Infinity);
-  costs[start] = 0;
-  heap.push({ city: start, cost: 0 });
+  Object.keys(grafo.listaAdjacencia).forEach(c => custos[c] = Infinity);
+  custos[origem] = 0;
+  fila.inserir({ cidade: origem, custo: 0 });
 
-  while (!heap.isEmpty()) {
-    const { city: u, cost } = heap.pop();
-    if (u === end) break;
+  while (!fila.estaVazia()) {
+    const { cidade: atual, custo } = fila.remover();
+    if (atual === destino) break;
 
-    graph.adjList[u].forEach(({ node: v, distance }) => {
-      const fuelCost = (distance / autonomy) * fuelPrice;
-      
-      const tollCost = (v === end) ? 0 : (graph.tolls[v] || 0);
-      const newCost = cost + fuelCost + tollCost;
-      if (newCost < costs[v]) {
-        costs[v] = newCost;
-        prev[v] = u;
-        heap.push({ city: v, cost: newCost });
+    grafo.listaAdjacencia[atual].forEach(({ destino: vizinho, distancia }) => {
+      const custoCombustivel = (distancia / autonomia) * precoCombustivel;
+      const custoPedagio = (vizinho === destino) ? 0 : (grafo.pedagios[vizinho] || 0);
+      const novoCusto = custo + custoCombustivel + custoPedagio;
+
+      if (novoCusto < custos[vizinho]) {
+        custos[vizinho] = novoCusto;
+        anteriores[vizinho] = atual;
+        fila.inserir({ cidade: vizinho, custo: novoCusto });
       }
     });
   }
 
-  if (costs[end] === Infinity) return null;
-  const path = [];
-  for (let cur = end; cur; cur = prev[cur]) path.unshift(cur);
-  return { path, cost: costs[end] };
+  if (custos[destino] === Infinity) return null;
+  const caminho = [];
+  for (let atual = destino; atual; atual = anteriores[atual]) caminho.unshift(atual);
+  return { caminho, custo: custos[destino] };
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadGraph();
+  carregarGrafo();
+
   document.getElementById('buscar').addEventListener('click', () => {
-    const o = document.getElementById('origem').value;
-    const d = document.getElementById('destino').value;
-    const p = parseFloat(document.getElementById('combustivel').value);
-    const a = parseFloat(document.getElementById('autonomia').value);
-    if (!o || !d || isNaN(p) || isNaN(a)) {
+    const origem = document.getElementById('origem').value;
+    const destino = document.getElementById('destino').value;
+    const preco = parseFloat(document.getElementById('combustivel').value);
+    const autonomia = parseFloat(document.getElementById('autonomia').value);
+
+    if (!origem || !destino || isNaN(preco) || isNaN(autonomia)) {
       alert('Preencha todos os campos!');
       return;
     }
-    const result = dijkstra(o, d, p, a);
-    document.getElementById('caminho').textContent = result ? result.path.join(' → ') : 'Rota inexistente';
-    document.getElementById('custo').textContent = result ? result.cost.toFixed(2) : '0.00';
+
+    const resultado = dijkstra(origem, destino, preco, autonomia);
+    document.getElementById('caminho').textContent = resultado ? resultado.caminho.join(' → ') : 'Rota inexistente';
+    document.getElementById('custo').textContent = resultado ? resultado.custo.toFixed(2) : '0.00';
   });
+
   document.getElementById('limpar').addEventListener('click', () => {
     document.getElementById('caminho').textContent = '---';
     document.getElementById('custo').textContent = '0.00';
